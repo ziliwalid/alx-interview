@@ -5,10 +5,8 @@ This Python script generates Pascal's triangle up to the nth row.
 Installation:
 ------------
 1. Clone the repository:
-    git clone https://github.com/your_username/pascals_triangle.git
+    git clone [https://github.com/ziliwalid/pascals_triangle.git](https://github.com/ziliwalid/alx-interview/edit/main/0x00-pascal_triangl)
 
-2. Navigate to the project directory:
-    cd pascals_triangle
 
 Usage:
 -----
