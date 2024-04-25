@@ -13,7 +13,7 @@ def pascal_triangle(n):
     '''
     comb_lis = []
     if n == 0:
-        return "you need it to be ";
+        return comb_list;
     for i in range(n):
         comb_lis.append([])
         comb_lis[i].append(1)
