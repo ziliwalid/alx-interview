@@ -1,18 +1,17 @@
+#!/usr/bin/python3
 '''formulates the pascal triangle'''
 
 
 def pascal_triangle(n):
     '''
     Generates Pascal's triangle up to the nth row.
-
     Args:
         n (int): The number of rows of the triangle.
-
     Returns:
         List of lists of integers representing Pascal’s triangle
     '''
     comb_lis = []
-    if n == 0:
+    if n <= 0:
         return comb_list;
     for i in range(n):
         comb_lis.append([])
