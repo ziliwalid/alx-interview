@@ -12,15 +12,17 @@ def minOperations(n):
     args: n: Number of characters to be displayed
     return: number of min operations
     """
-
-    if n == 1:
-        return 0
-
-    counter = 0
-    while n > 0:
-        if n % 2 == 0:
-            n //= 2
+    
+    current = 1
+    start = 0
+    cou = 0
+    while current < n:
+        remainder = n - current
+        if (remainder % current == 0):
+            start = current
+            current += start
+            cou += 2
         else:
-            n -= 1
-        counter += 1
-    return counter
+            current += start
+            cou += 1
+    return cou
