@@ -1,45 +1,44 @@
 #!/usr/bin/python3
 
-"""Script that reads stdin line by line and computes metrics"""
+"""reads stdin lines"""
 
 import sys
 
 
-def printsts(dic, size):
-    """ WWPrints information """
+def printStats(dic, size):
+    """ prints stats"""
     print("File size: {:d}".format(size))
     for i in sorted(dic.keys()):
         if dic[i] != 0:
             print("{}: {:d}".format(i, dic[i]))
 
 
-sts = {"200": 0, "301": 0, "400": 0, "401": 0, "403": 0,
+stats = {"200": 0, "301": 0, "400": 0, "401": 0, "403": 0,
        "404": 0, "405": 0, "500": 0}
 
-count = 0
-size = 0
+countStat = 0
+length = 0
 
 try:
     for line in sys.stdin:
-        if count != 0 and count % 10 == 0:
-            printsts(sts, size)
+        if countStat != 0 and countStat % 10 == 0:
+            printStats(stats, length)
 
         stlist = line.split()
-        count += 1
+        countStat += 1
 
         try:
-            size += int(stlist[-1])
+            length += int(stlist[-1])
         except:
             pass
 
         try:
-            if stlist[-2] in sts:
-                sts[stlist[-2]] += 1
+            if stlist[-2] in stats:
+                stats[stlist[-2]] += 1
         except:
             pass
-    printsts(sts, size)
-
+    printStats(stats, length)
 
 except KeyboardInterrupt:
-    printsts(sts, size)
+    printStats(stats, length)
     raise
