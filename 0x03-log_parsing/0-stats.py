@@ -1,44 +1,47 @@
 #!/usr/bin/python3
 
-"""reads stdin lines"""
-
 import sys
 
 
-def printStats(dic, size):
-    """ prints stats"""
-    print("File size: {:d}".format(size))
-    for i in sorted(dic.keys()):
-        if dic[i] != 0:
-            print("{}: {:d}".format(i, dic[i]))
+def print_msg(dict_sc, total_file_size):
+    """
+    prints msg
+    Args:
+        dict_sc: dict
+        total_file_size: file total
+    Returns:
+        NADA
+    """
+
+    print("File size: {}".format(total_file_size))
+    for key, val in sorted(dict_sc.items()):
+        if val != 0:
+            print("{}: {}".format(key, val))
 
 
-stats = {"200": 0, "301": 0, "400": 0, "401": 0, "403": 0,
-       "404": 0, "405": 0, "500": 0}
-
-countStat = 0
-length = 0
+total_file_size = 0
+code = 0
+counter = 0
+dict_sc = {"200": 0, "301": 0, "400": 0, "401": 0, "403": 0, "404": 0, "405": 0,  "500": 0}
 
 try:
     for line in sys.stdin:
-        if countStat != 0 and countStat % 10 == 0:
-            printStats(stats, length)
+        parsed_line = line.split()
+        parsed_line = parsed_line[::-1] 
 
-        stlist = line.split()
-        countStat += 1
+        if len(parsed_line) > 2:
+            counter += 1
 
-        try:
-            length += int(stlist[-1])
-        except:
-            pass
+            if counter <= 10:
+                total_file_size += int(parsed_line[0])  # file size
+                code = parsed_line[1]  # status code
 
-        try:
-            if stlist[-2] in stats:
-                stats[stlist[-2]] += 1
-        except:
-            pass
-    printStats(stats, length)
+                if (code in dict_sc.keys()):
+                    dict_sc[code] += 1
 
-except KeyboardInterrupt:
-    printStats(stats, length)
-    raise
+            if (counter == 10):
+                print_msg(dict_sc, total_file_size)
+                counter = 0
+
+finally:
+    print_msg(dict_sc, total_file_size)
