@@ -1,7 +1,9 @@
 #!/usr/bin/python3
 """N-Queens solver"""
 
+
 import sys
+
 
 def is_safe(queen_shih, row, col):
     """Check if a position is safe for the queen."""
